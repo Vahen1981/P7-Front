@@ -51,7 +51,7 @@ export default function Navbar() {
           </li>
         </ul>
         <div className="flex space-x-4 items-center relative user-menu" ref={userMenuRef}>
-          <Link to="#" className="flex items-center"><ShoppingCart size={24} /></Link>
+          <Link to="/cart" className="flex items-center"><ShoppingCart size={24} /></Link>
           <button
             onClick={(e) => {
               e.stopPropagation();

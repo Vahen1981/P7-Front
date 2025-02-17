@@ -66,6 +66,30 @@ const UserState = (props) => {
     }
   }
 
+  const substractProductFromUserCart = async (userId, productId) => {
+    try {
+      const res = await axiosClient.put("/user/removeFromCart", {userId, productId})
+      dispatch({ type: "CART", payload: res.data.cart });
+    } catch (error){
+      console.error(error);
+    }
+  }
+
+  const getUserCart = async (userId) => {
+    try {
+      const res = await axiosClient.get(`/user/cart/${userId}`);
+      if (res.data.cart) {
+        dispatch({ type: "CART", payload: res.data.cart });
+      } else {
+        console.warn("La respuesta no contiene 'cart'");
+      }
+      return res.data.cart;
+    } catch (error) {
+      console.error("Error al obtener el carrito:", error);
+      return null;
+    }
+  };
+
   const checkAuthentication = async () => {
     try {
       const response = await axiosClient.get("/user/verify", {
@@ -85,7 +109,7 @@ const UserState = (props) => {
 
 
   return (
-    <UserContext.Provider value={{ login, logout, checkAuthentication, addProductToUserCart, user: globalState.user, isAuthenticated: globalState.isAuthenticated }}>
+    <UserContext.Provider value={{ login, logout, checkAuthentication, addProductToUserCart, getUserCart, substractProductFromUserCart, user: globalState.user, isAuthenticated: globalState.isAuthenticated }}>
       {props.children}
     </UserContext.Provider>
   );

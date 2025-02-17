@@ -9,7 +9,7 @@ const productReducer = (globalState, action) => {
         case "GET_PRODUCT":
             return {
                 ...globalState,
-                product: action.payload
+                products: [...globalState.products, action.payload], 
             };
 
         default:

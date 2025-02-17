@@ -8,6 +8,7 @@ import WomenClothing from './pages/WomenClothing';
 import Jewelery from './pages/Jewelery';
 import Electronics from './pages/Electronics';
 import LoginPage from './pages/Login';
+import ShoppingCart from './pages/ShoppingCart';
 
 export const Router = createBrowserRouter([
     { 
@@ -19,6 +20,7 @@ export const Router = createBrowserRouter([
             { path: '/women', element: <WomenClothing />},
             { path: '/jewelery', element: <Jewelery />},
             { path: '/electronics', element: <Electronics />},
+            { path: '/cart', element: <ShoppingCart />},
             { path: '/register', element: <Register />},
             { path: '/login', element: <LoginPage />},
             { path: '/SuccessfulRegistration', element: <SuccessfulRegistration />}
