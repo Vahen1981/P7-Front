@@ -1,13 +1,17 @@
 import { useState, useRef, useCallback, useEffect, useContext } from "react";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import Popup from "./Popup";
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickOutside = useCallback((event) => {
     if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
@@ -22,9 +26,20 @@ export default function Navbar() {
     };
   }, [handleClickOutside]);
 
+  const logingOut = () => {
+    setPopupMessage("Se ha cerrado su sesión");
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      setUserMenuOpen(false);
+      logout();
+      navigate('/login');
+    }, 2000);
+  }
 
   return (
     <nav className="bg-blue-600 p-4 text-white relative">
+      {showPopup && <Popup message={popupMessage} />}
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="text-xl font-bold">Tienda</h1>
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -68,7 +83,7 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <>
                   <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => logout()}>Administrar cuenta</button>
-                  <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => logout()}>Cerrar sesión</button>
+                  <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => logingOut()}>Cerrar sesión</button>
                 </>
               ) : (
                 <>
