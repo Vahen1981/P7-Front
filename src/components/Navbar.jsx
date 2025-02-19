@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 
 export default function Navbar() {
-  const { user, isAuthenticated } = useContext(UserContext);
+  const { user, isAuthenticated, logout } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
@@ -65,7 +65,7 @@ export default function Navbar() {
           {userMenuOpen && (
             <div className="absolute right-0 top-10 w-48 bg-white text-black shadow-lg rounded-lg overflow-hidden">
               {isAuthenticated ? (
-                <button className="block px-4 py-2 hover:bg-gray-200">Cerrar sesión</button>
+                <button className="block px-4 py-2 hover:bg-gray-200" onClick={() => logout()}>Cerrar sesión</button>
               ) : (
                 <>
                   <Link to="/register" className="block px-4 py-2 hover:bg-gray-200" onClick={() => setUserMenuOpen(false)}>Registrarse</Link>

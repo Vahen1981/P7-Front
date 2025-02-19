@@ -25,7 +25,6 @@ const ProductState = (props) => {
     const getProductById = async (id) => {
         try {
             const res = await axiosClient.get(`/products/${id}`);
-            console.log("Product fetched:", res.data);
             dispatch({
                 type: "GET_PRODUCT",
                 payload: res.data

@@ -4,16 +4,15 @@ import ProductContext from "../context/ProductContext";
 import { Trash } from "lucide-react";
 
 const CartList = () => {
-  const { getUserCart, user, substractProductFromUserCart } = useContext(UserContext);
+  const { getUserCart, user, addProductToUserCart, substractProductFromUserCart, deleteProductFromUserCart } = useContext(UserContext);
   const { getProductById } = useContext(ProductContext);
   const [productsInCart, setProductsInCart] = useState([]);
 
-  useEffect(() => {
-    const getCart = async () => {
-      const cart = await getUserCart(user.id);
-      if (cart) {
+  const getCart = async () => {
+    const res = await getUserCart(user.id);
+    if (res) {
         const updatedCart = await Promise.all(
-          cart.map(async (item) => {
+          res.map(async (item) => {
             const productList = await getProductById(item.productId);
             if (productList) {
               return {
@@ -27,41 +26,56 @@ const CartList = () => {
             }
           })
         );
-        setProductsInCart(updatedCart.filter((item) => item !== null));
+      setProductsInCart(updatedCart.filter((item) => item !== null));
       }
-    };
+  };
 
+  useEffect(() => {
     if (user.id) {
       getCart();
     }
   }, [user.id]);
 
+
+  const totalPrice = productsInCart.reduce(
+    (total, product) => total + (product.price * product.quantity),
+    0
+  ).toFixed(2);
+
+
   const handleQuantityChange = async (productId, change) => {
-    setProductsInCart((prevProducts) =>
-      prevProducts.map((product) =>
-        product.productId === productId
-          ? {
-              ...product,
-              quantity: product.quantity + change,
-            }
-          : product
-      )
-    );
-    if(change === -1){
-        await substractProductFromUserCart(user.id, productId); 
+    let ok = false;
+    if (change === -1) {
+      ok = await substractProductFromUserCart(user.id, productId);
+    } else if (change === 1) {
+      ok = await addProductToUserCart(user.id, productId);
+    }
+  
+    if (ok) {
+      setProductsInCart((prevProducts) =>
+        prevProducts.map((product) =>
+          product.productId === productId
+            ? { ...product, quantity: product.quantity + change }
+            : product
+        )
+      );
+    } else {
+      console.error("Error al actualizar la cantidad");
     }
   };
 
-  const handleRemoveProduct = (productId) => {
-    setProductsInCart((prevProducts) =>
-      prevProducts.filter((product) => product.productId !== productId)
-    );
+  const handleRemoveProduct = async (productId) => {
+    const ok = await deleteProductFromUserCart(user.id, productId);
+    if(ok){
+      setProductsInCart((prevProducts) =>
+        prevProducts.filter((product) => product.productId !== productId)
+      );
+    }
+    else {
+      console.error("Error al eliminar elemento");
+    }
   };
-
-  const totalPrice = productsInCart.reduce(
-    (total, product) => total + product.price * product.quantity,
-    0
-  );
+  
 
   return (
     <div className="max-w-full lg:max-w-[55%] mx-auto">
@@ -73,19 +87,16 @@ const CartList = () => {
                 key={index}
                 className="flex items-center justify-between border-b border-gray-300 py-4 text-sm"
               >
-                {/* Imagen */}
                 <img
                   src={product.image}
                   alt={product.title}
                   className="w-10 h-10 object-cover rounded"
                 />
 
-                {/* Título */}
                 <div className="flex-1 ml-4">
                   <h3 className="text-sm font-medium">{product.title}</h3>
                 </div>
 
-                {/* Cantidad y botones */}
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => handleQuantityChange(product.productId, -1)}
@@ -103,14 +114,13 @@ const CartList = () => {
                   </button>
                 </div>
 
-                {/* Precio */}
                 <div className="w-30 font-semibold text-sm text-right">
                   ${product.price * product.quantity}
                 </div>
 
                 <button
                     onClick={() => handleRemoveProduct(product.productId)}
-                    className="ml-4 text-red-500 hover:text-red-700"
+                    className="ml-4 text-black-500 hover:text-red-700"
                 >
                     <Trash size={18} />
                 </button>
@@ -121,7 +131,6 @@ const CartList = () => {
           )}
         </div>
 
-        {/* Total y botón de compra */}
         {productsInCart.length > 0 && (
         <div className="mt-6">
             <div className="flex justify-between font-semibold text-lg">
