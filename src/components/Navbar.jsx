@@ -22,6 +22,7 @@ export default function Navbar() {
     };
   }, [handleClickOutside]);
 
+
   return (
     <nav className="bg-blue-600 p-4 text-white relative">
       <div className="container mx-auto flex justify-between items-center">

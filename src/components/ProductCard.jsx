@@ -1,22 +1,30 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import Popup from "../components/Popup"; 
 
 const ProductCard = ({ product }) => {
-  const { addProductToUserCart, user } = useContext(UserContext);
+  const { addProductToUserCart, user, isAuthenticated } = useContext(UserContext);
   const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   const addToCart = async (productId) => {
-    const res = await addProductToUserCart(user.id, productId);
-    if (res) {
-      setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 2000); // Oculta el popup después de 2 segundos
-    }
+    await addProductToUserCart(user.id, productId);
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 2000);
   };
+
+  useEffect(() =>{
+    if(isAuthenticated){
+      setPopupMessage("Producto añadido al carrito");
+    }
+    else {
+      setPopupMessage("Debe iniciar sesión para añadir productos al carrito");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="relative bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200 flex flex-col h-full">
-      {showPopup && <Popup message="Producto añadido al carrito" />}
+      {showPopup && <Popup message={popupMessage} />}
       <img className="w-full h-64 object-cover rounded-lg mb-4" src={product.image} alt={product.title} />
       <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
       <p className="text-gray-600 mb-4">{product.description}</p>

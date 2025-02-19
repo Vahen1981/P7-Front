@@ -65,18 +65,19 @@ const UserState = (props) => {
           type: "AUTH",
           payload: true
         });
-        alert("Inicio de sesión exitoso");
+        return true;
       } else {
-        alert("El inicio de sesión falló: No se recibió token");
+        return false;
       }
-  
     } catch (error) {
-      console.error(error);
+      if(error.status === 400){
+        return false;
+      }
     }
   };
 
   const logout = () => {
-    window.location.href = "/login";
+    //window.location.href = "/login";
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("userEmail")

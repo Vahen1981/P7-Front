@@ -1,26 +1,40 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import Popup from "../components/Popup";
 
 const LoginPage = () => {
-  const { login, error, loading, isAuthenticated } = useContext(UserContext);
+  const { login, error, loading } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [popupMessage, setPopupMessage] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
-  };
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/');
+    let ok = false;
+    ok = await login(email, password);
+    if(ok){
+      setPopupMessage("¡Se ha iniciado sesión exitosamente!");
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+        navigate('/');
+      }, 2000);
     }
-  }, [isAuthenticated, navigate]);
+    if(!ok){
+      setPopupMessage("El usuario o la contraseña no coinciden");
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 2000);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {showPopup && <Popup message={popupMessage} />}
       <div className="w-full max-w-sm p-8 bg-white shadow-lg rounded-lg">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Iniciar sesión</h2>
         
