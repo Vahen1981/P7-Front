@@ -10,6 +10,8 @@ import Electronics from './pages/Electronics';
 import LoginPage from './pages/Login';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetail from './pages/ProductDetail';
+import UserProfile from './pages/UserSettings';
+import ChangePassword from './pages/ChangePassword';
 
 export const Router = createBrowserRouter([
     { 
@@ -25,7 +27,9 @@ export const Router = createBrowserRouter([
             { path: '/cart', element: <ShoppingCart />},
             { path: '/register', element: <Register />},
             { path: '/login', element: <LoginPage />},
-            { path: '/SuccessfulRegistration', element: <SuccessfulRegistration />}
+            { path: '/SuccessfulRegistration', element: <SuccessfulRegistration />},
+            { path: '/userProfile', element: <UserProfile />},
+            { path: '/changePassword', element: <ChangePassword />}
         ]
     },
 ]);

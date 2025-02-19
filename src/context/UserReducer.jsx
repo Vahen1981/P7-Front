@@ -36,6 +36,16 @@ const UserReducer = (globalState, action) => {
           isAuthenticated: action.payload
         };
 
+      case 'UPDATE':
+        return {
+          ...globalState,
+          user: {
+            ...globalState.user, // Mantiene los datos previos
+            email: action.payload.email,
+            username: action.payload.username,
+          },
+        };
+
       default:
         return globalState;
     }

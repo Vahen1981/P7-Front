@@ -33,7 +33,7 @@ const CartList = () => {
   };
 
   useEffect(() => {
-    if (user.id) {
+    if (user?.id) {
       getCart();
     }
   }, [user.id]);

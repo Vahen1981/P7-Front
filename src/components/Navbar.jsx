@@ -82,7 +82,15 @@ export default function Navbar() {
             <div className="absolute right-0 top-10 w-48 bg-white text-black shadow-lg rounded-lg overflow-hidden">
               {isAuthenticated ? (
                 <>
-                  <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => logout()}>Administrar cuenta</button>
+                  <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" 
+                    onClick={() => {
+                      navigate('/userProfile');
+                      setUserMenuOpen(false);
+                      }
+                    }
+                  >
+                    Administrar cuenta
+                  </button>
                   <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => logingOut()}>Cerrar sesión</button>
                 </>
               ) : (

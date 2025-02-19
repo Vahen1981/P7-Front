@@ -10,8 +10,8 @@ const UserState = (props) => {
       email: null,
       username: null,
       token: null,
-      cart: []
-  },
+    },
+    cart: [],
     isAuthenticated: false,
   };
 
@@ -33,11 +33,6 @@ const UserState = (props) => {
             email: userEmail,
             username: userUsername,
           },
-        });
-  
-        dispatch({
-          type: "AUTH",
-          payload: true,
         });
       }
     }
@@ -61,16 +56,13 @@ const UserState = (props) => {
             username: response.data.username,
           },
         });
-        dispatch({
-          type: "AUTH",
-          payload: true
-        });
+
         return true;
       } else {
         return false;
       }
     } catch (error) {
-      if(error.status === 400){
+      if (error.response && error.response.status === 400) {
         return false;
       }
     }
@@ -118,6 +110,28 @@ const UserState = (props) => {
     }
   };
 
+  const updateUserData = async (userData) => {
+    try {
+      const res = await axiosClient.put("/user/update", userData);
+      if(res){
+        console.log(res);
+        dispatch({ type: "UPDATE", 
+          payload: {
+            email: res.data.email,
+            username: res.data.username
+          },
+        })
+        localStorage.setItem("userEmail", res.data.email);
+        localStorage.setItem("username", res.data.username);
+        return(res);
+      }
+
+    } catch (error) {
+      console.error(error);
+      return (error);
+    }
+  }
+
   const substractProductFromUserCart = async (userId, productId) => {
     try {
       const res = await axiosClient.put("/user/removeQuantity", { userId, productId });
@@ -143,7 +157,8 @@ const UserState = (props) => {
   return (
     <UserContext.Provider value={{ 
         login, 
-        logout, 
+        logout,
+        updateUserData, 
         addProductToUserCart, 
         getUserCart, 
         substractProductFromUserCart, 
