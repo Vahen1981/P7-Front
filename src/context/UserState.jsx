@@ -76,25 +76,19 @@ const UserState = (props) => {
   };
 
   const logout = () => {
-    const wasAuthenticated = globalState.isAuthenticated;
+    window.location.href = "/login";
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userEmail")
+    localStorage.removeItem("username");
     dispatch({
       type: "LOGOUT",
     });
-    if(wasAuthenticated){
-      window.location.reload();
-    }
   };
 
   const notAuth = (error) => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("userEmail");
-      localStorage.removeItem("username");
-
-      dispatch({ type: "AUTH", payload: false });
-      window.location.href = "/login";
+      logout();
     } else {
       console.error(error);
     }

@@ -65,11 +65,14 @@ export default function Navbar() {
           {userMenuOpen && (
             <div className="absolute right-0 top-10 w-48 bg-white text-black shadow-lg rounded-lg overflow-hidden">
               {isAuthenticated ? (
-                <button className="block px-4 py-2 hover:bg-gray-200" onClick={() => logout()}>Cerrar sesión</button>
+                <>
+                  <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => logout()}>Administrar cuenta</button>
+                  <button className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => logout()}>Cerrar sesión</button>
+                </>
               ) : (
                 <>
-                  <Link to="/register" className="block px-4 py-2 hover:bg-gray-200" onClick={() => setUserMenuOpen(false)}>Registrarse</Link>
-                  <Link to="/login" className="block px-4 py-2 hover:bg-gray-200" onClick={() => setUserMenuOpen(false)}>Iniciar sesión</Link>
+                  <Link to="/register" className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => setUserMenuOpen(false)}>Registrarse</Link>
+                  <Link to="/login" className="block px-4 py-2 hover:bg-gray-200 w-48 text-right" onClick={() => setUserMenuOpen(false)}>Iniciar sesión</Link>
                 </>
               )}
             </div>
