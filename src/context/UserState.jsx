@@ -141,7 +141,17 @@ const UserState = (props) => {
   };
 
   return (
-    <UserContext.Provider value={{ login, logout, checkAuthentication, addProductToUserCart, getUserCart, substractProductFromUserCart, deleteProductFromUserCart, notAuth, user: globalState.user, isAuthenticated: globalState.isAuthenticated }}>
+    <UserContext.Provider value={{ 
+        login, 
+        logout, 
+        addProductToUserCart, 
+        getUserCart, 
+        substractProductFromUserCart, 
+        deleteProductFromUserCart, 
+        notAuth, 
+        user: globalState.user, 
+        isAuthenticated: globalState.isAuthenticated 
+      }}>
       {props.children}
     </UserContext.Provider>
   );

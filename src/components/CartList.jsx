@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import ProductContext from "../context/ProductContext";
 import { Trash } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CartList = () => {
   const { getUserCart, user, addProductToUserCart, substractProductFromUserCart, deleteProductFromUserCart } = useContext(UserContext);
   const { getProductById } = useContext(ProductContext);
   const [productsInCart, setProductsInCart] = useState([]);
+  const navigate = useNavigate();
 
   const getCart = async () => {
     const res = await getUserCart(user.id);
@@ -90,11 +92,15 @@ const CartList = () => {
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-10 h-10 object-cover rounded"
+                  className="w-10 h-10 object-cover rounded cursor-pointer"
+                  onClick={() => {navigate(`/productDetail/${product.productId}`)}}
                 />
 
                 <div className="flex-1 ml-4">
-                  <h3 className="text-sm font-medium">{product.title}</h3>
+                  <h3 className="text-sm font-medium hover:text-blue-500 flex items-center cursor-pointer" 
+                  onClick={() => {navigate(`/productDetail/${product.productId}`)}}>
+                    {product.title}
+                  </h3>
                 </div>
 
                 <div className="flex items-center space-x-2">
