@@ -77,7 +77,6 @@ const UserState = (props) => {
   };
 
   const logout = () => {
-    //window.location.href = "/login";
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("userEmail")
@@ -100,13 +99,10 @@ const UserState = (props) => {
       const res = await axiosClient.get(`/user/cart/${userId}`);
       if (res.data.cart) {
         dispatch({ type: "CART", payload: res.data.cart });
-      } else {
-        console.warn("La respuesta no contiene 'cart'");
-      }
+      } 
       return res.data.cart;
     } catch (error) {
       notAuth(error);
-      console.error("Error al obtener el carrito:", error);
       return error;
     }
   };
@@ -141,23 +137,6 @@ const UserState = (props) => {
     } catch (error) {
       notAuth(error);
       return false;
-    }
-  };
-
-  const checkAuthentication = async () => {
-    try {
-      const response = await axiosClient.get("/user/verify", {
-        headers: {
-          Authorization: `Bearer ${globalState.user.token}`,
-        },
-      });
-      if(response.status === 200){
-        dispatch({ type: "AUTH", payload: true });
-        return true;
-      } 
-    } catch (error) {
-      console.error("Error verificando autenticación:", error);
-      dispatch({ type: "AUTH", payload: false });
     }
   };
 
