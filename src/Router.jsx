@@ -12,13 +12,15 @@ import ShoppingCart from './pages/ShoppingCart';
 import ProductDetail from './pages/ProductDetail';
 import UserProfile from './pages/UserSettings';
 import ChangePassword from './pages/ChangePassword';
+import Home from './pages/Home';
 
 export const Router = createBrowserRouter([
     { 
         path: '/',
         element: <Layout />,
         children: [
-            { path: '/', element: <AllProducts />},
+            { path: '/', element: <Home />},
+            { path: '/allproducts', element: <AllProducts />},
             { path: '/men', element: <MenClothing />},
             { path: '/women', element: <WomenClothing />},
             { path: '/jewelery', element: <Jewelery />},
@@ -29,7 +31,7 @@ export const Router = createBrowserRouter([
             { path: '/login', element: <LoginPage />},
             { path: '/SuccessfulRegistration', element: <SuccessfulRegistration />},
             { path: '/userProfile', element: <UserProfile />},
-            { path: '/changePassword', element: <ChangePassword />}
+            { path: '/changePassword', element: <ChangePassword />},
         ]
     },
 ]);

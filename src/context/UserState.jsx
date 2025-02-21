@@ -110,11 +110,25 @@ const UserState = (props) => {
     }
   };
 
+  const verifyPassword = async (password, id) => {
+    try{
+      const res = await axiosClient.post(`/user/verify/${id}`, { password });
+      if(res.status === 200){
+        return true;
+      }
+      else {
+        return false
+      }
+    } catch (error){
+      console.error(error);
+      return false;
+    }
+  }
+
   const updateUserData = async (userData) => {
     try {
       const res = await axiosClient.put("/user/update", userData);
       if(res){
-        console.log(res);
         dispatch({ type: "UPDATE", 
           payload: {
             email: res.data.email,
@@ -158,6 +172,7 @@ const UserState = (props) => {
     <UserContext.Provider value={{ 
         login, 
         logout,
+        verifyPassword,
         updateUserData, 
         addProductToUserCart, 
         getUserCart, 

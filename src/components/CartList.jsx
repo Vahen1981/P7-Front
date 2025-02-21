@@ -3,11 +3,13 @@ import UserContext from "../context/UserContext";
 import ProductContext from "../context/ProductContext";
 import { Trash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 const CartList = () => {
   const { getUserCart, user, addProductToUserCart, substractProductFromUserCart, deleteProductFromUserCart } = useContext(UserContext);
   const { getProductById } = useContext(ProductContext);
   const [productsInCart, setProductsInCart] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const getCart = async () => {
@@ -17,6 +19,7 @@ const CartList = () => {
           res.map(async (item) => {
             const productList = await getProductById(item.productId);
             if (productList) {
+              setLoading(false);
               return {
                 ...item,
                 title: productList.product.title,
@@ -77,7 +80,14 @@ const CartList = () => {
       console.error("Error al eliminar elemento");
     }
   };
-  
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center">
+        <Loader2 className="w-20 h-20 animate-spin text-blue-500" />
+      </div>
+    );
+  }  
 
   return (
     <div className="max-w-full lg:max-w-[55%] mx-auto">

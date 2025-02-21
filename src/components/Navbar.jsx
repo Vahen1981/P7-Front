@@ -3,6 +3,7 @@ import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import Popup from "./Popup";
+import logo from '../img/logo.png';
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useContext(UserContext);
@@ -38,10 +39,14 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-blue-600 p-4 text-white relative">
+    <nav className="bg-blue-600 p-2 text-white relative z-60">
       {showPopup && <Popup message={popupMessage} />}
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl font-bold">Tienda</h1>
+        <div className="flex flex-row items-center">
+          <img src={logo} alt="Logo" className="w-16 h-auto cursor-pointer" onClick={() => navigate('/')}/>
+          <h1 className="text-xl font-bold ml-3 hidden md:block"></h1>
+        </div>
+        
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -51,7 +56,7 @@ export default function Navbar() {
           }`}
         >
           <li className="p-2 md:p-0">
-            <Link to="/" className="block" onClick={() => setIsOpen(false)}>Todos los productos</Link>
+            <Link to="/allproducts" className="block" onClick={() => setIsOpen(false)}>Todos los productos</Link>
           </li>
           <li className="p-2 md:p-0">
             <Link to="/men" className="block" onClick={() => setIsOpen(false)}>Ropa de Hombre</Link>

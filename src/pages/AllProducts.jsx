@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import ProductContext from '../context/ProductContext';
 import ProductCard from '../components/ProductCard';
+import { Loader2 } from 'lucide-react';
 
 const AllProducts = () => {
   const { globalState, getAllProducts } = useContext(ProductContext);
@@ -17,8 +18,8 @@ const AllProducts = () => {
 
   if (loading) {
     return (
-      <div className="text-center py-10">
-        <h2 className="text-xl font-semibold">Cargando productos...</h2>
+      <div className="flex flex-col items-center justify-center h-[calc(100vh-100px)] text-center">
+        <Loader2 className="w-20 h-20 animate-spin text-blue-500" />
       </div>
     );
   }

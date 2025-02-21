@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
 
 const ChangePassword = () => {
-    const { updateUserData , loading } = useContext(UserContext);
+    const { user, updateUserData , verifyPassword, loading } = useContext(UserContext);
     const [repiteNewPassword, setRepiteNewPassword] = useState("");
     const [password, setPassword] = useState("");
     const [popupMessage, setPopupMessage] = useState("");
@@ -15,40 +15,45 @@ const ChangePassword = () => {
         password: ""
     });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if(newPassword.password !== repiteNewPassword){
-        setPopupMessage("Ha cometido un error al ingresar la nueva contraseña");
-        setShowPopup(true);
-        setTimeout(() => {
-          setShowPopup(false);
-        }, 2000);
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    
+      if (newPassword.password !== repiteNewPassword) {
+        showPopUpMessage("Ha cometido un error al ingresar la nueva contraseña");
         return;
-    }
-
-    const res = await updateUserData(newPassword);
-    console.log(res);
-    if(res){
-        setPopupMessage("Ha establecido correctamente una nueva contraseña");
-        setShowPopup(true);
-        setTimeout(() => {
-          setShowPopup(false);
-          navigate("/");
-        }, 2000);
-    }
-    if(!res){
-        setPopupMessage("No se ha podido establacer una nueva contraseña, inténtelo de nuevo");
-        setShowPopup(true);
-        setTimeout(() => {
-          setShowPopup(false);
-        }, 2000);
-    }
-  };
+      }
+    
+      const passwordMatch = await verifyPassword(password, user.id);
+    
+      if (!passwordMatch) {
+        showPopUpMessage("La contraseña actual no coincide");
+        return;
+      }
+    
+      const res = await updateUserData(newPassword);
+    
+      if (res) {
+        showPopUpMessage("Ha establecido correctamente una nueva contraseña", true);
+      } else {
+        showPopUpMessage("No se ha podido establecer una nueva contraseña, inténtelo de nuevo");
+      }
+    };
+    
+    const showPopUpMessage = (message, redirect = false) => {
+      setPopupMessage(message);
+      setShowPopup(true);
+      
+      setTimeout(() => {
+        setShowPopup(false);
+        if (redirect) navigate("/");
+      }, 2000);
+    };
+    
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-start justify-center min-h-screen bg-gray-100">
       {showPopup && <Popup message={popupMessage} />}
-      <div className="w-full max-w-sm p-8 bg-white shadow-lg rounded-lg">
+      <div className="w-full max-w-85 md:max-w-[40vw] p-8 bg-white shadow-lg rounded-lg mt-10">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Cambiar Contraseña</h2>
         
         {loading ? (

@@ -58,9 +58,9 @@ const UserProfile = () => {
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-start justify-center min-h-screen bg-gray-100">
         {showPopup && <Popup message={popupMessage} />}
-        <div className="w-full max-w-3xl p-6 md:p-8 bg-white shadow-lg rounded-lg">
+        <div className="w-full max-w-85 md:max-w-[60vw] p-6 md:p-8 bg-white shadow-lg rounded-lg mt-10">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">Administrar Perfil</h2>
             <div className="flex flex-col md:flex-row gap-4">
                 
