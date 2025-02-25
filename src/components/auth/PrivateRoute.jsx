@@ -5,22 +5,23 @@ import Popup from '../Popup';
 
 export default function PrivateRoute({ children }) {
   const userContext = useContext(UserContext);
-  const { isAuthenticated, verifyingToken } = userContext;
+  const { verifyingToken, isAuthenticated, logout } = userContext;
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const verifyToken = async () => {
-      await verifyingToken();
+      const isAuth = await verifyingToken();
       setLoading(false);
-      if(!isAuthenticated){
+      if (!isAuth) {
         setTimeout(() => {
-            navigate('/login');
-            }, 2000);
-        }
+        logout();
+        navigate('/login');
+        }, 2000);
+      }
     };
     verifyToken();
-  }, [isAuthenticated]);
+  }, []);
 
 
   if (loading) return null;

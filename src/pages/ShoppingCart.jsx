@@ -5,20 +5,24 @@ import { useNavigate } from 'react-router-dom';
 import Popup from '../components/Popup';
 
 const ShoppingCartPage = () => {
-  const { isAuthenticated, logout } = useContext(UserContext);
+  const { verifyingToken, isAuthenticated, logout } = useContext(UserContext);
   const navigate = useNavigate();
   const[showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      setShowPopup(true);
-      setTimeout(() => {
+    const auth = async () => {
+      const isAuth = await verifyingToken();
+      if (!isAuth) {
+        setShowPopup(true);
+        setTimeout(() => {
         setShowPopup(false);
         logout();
         navigate('/login');
-      }, 2000);
+        }, 2000);
+      }
     }
-  }, [ isAuthenticated ]);
+    auth();
+  }, []);
 
   return (
     <>

@@ -33,8 +33,12 @@ const UserReducer = (globalState, action) => {
       case "OBTENER_USUARIO":
         return {
             ...globalState,
-            isAuthenticated: true,
-            user: action.payload
+            user: {
+              id: action.payload.id,
+              email: action.payload.email,
+              username: action.payload.username,
+          },
+            isAuthenticated: true
         }
 
       case 'AUTH':

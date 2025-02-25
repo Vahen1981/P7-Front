@@ -36,6 +36,7 @@ const UserState = (props) => {
         });
       }
     }
+    addTokenToHeaders();
   }, []);
 
   const login = async (email, password) => {
@@ -46,6 +47,10 @@ const UserState = (props) => {
         localStorage.setItem("userId", response.data.id);
         localStorage.setItem("userEmail", response.data.email);
         localStorage.setItem("username", response.data.username);
+
+        console.log("Usuario: ", response.data.username);
+        console.log("Id: ", response.data.id);
+        console.log("Email: ", response.data.email);
   
         dispatch({
           type: "LOGIN",
@@ -78,23 +83,31 @@ const UserState = (props) => {
     });
   };
 
-  const verifyingToken = async () => {
+  const addTokenToHeaders = () => {
     const token = localStorage.getItem('token');
-
     if (token) {
         axiosClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
     } else {
-        delete axiosClient.defaults.headers.common['Authorization']
+      delete axiosClient.defaults.headers.common['Authorization']
     }
+  }
+
+  const verifyingToken = async () => {
+    addTokenToHeaders();
     try {
-        const res = await axiosClient.get('/user/verify');
-        console.log('respuesta del verificar usuario', res);
+        const res = await axiosClient.get('/user/verify-user');
         dispatch({
             type: 'OBTENER_USUARIO',
-            payload: res.data.user
+            payload: {
+              id: res.data.user._id,
+              email: res.data.user.email,
+              username: res.data.user.username,
+            },
         })
+        return true;
     } catch (error) {
         console.log(error);
+        return false;
     }
   }
 
@@ -106,31 +119,8 @@ const UserState = (props) => {
     }
   }
 
-  const getUserCart = async (userId) => {
-    try {
-      const res = await axiosClient.get(`/user/cart/${userId}`);
-      if (res.data.cart) {
-        dispatch({ type: "CART", payload: res.data.cart });
-      } 
-      return res.data.cart;
-    } catch (error) {
-      notAuth(error);
-      return error;
-    }
-  };
-  
-  const addProductToUserCart = async (userId, productId) => {
-    try {
-      const res = await axiosClient.put("/user/addToCart", { userId, productId });
-      dispatch({ type: "CART", payload: res.data.cart });
-      return true;
-    } catch (error) {
-      notAuth(error);
-      return false;
-    }
-  };
-
   const verifyPassword = async (password, id) => {
+    addTokenToHeaders();
     try{
       const res = await axiosClient.post(`/user/verify/${id}`, { password });
       if(res.status === 200){
@@ -146,6 +136,7 @@ const UserState = (props) => {
   }
 
   const updateUserData = async (userData) => {
+    addTokenToHeaders();
     try {
       const res = await axiosClient.put("/user/update", userData);
       if(res){
@@ -166,7 +157,34 @@ const UserState = (props) => {
     }
   }
 
+  const getUserCart = async (userId) => {
+    addTokenToHeaders();
+    try {
+      const res = await axiosClient.get(`/user/cart/${userId}`);
+      if (res.data.cart) {
+        dispatch({ type: "CART", payload: res.data.cart });
+      } 
+      return res.data.cart;
+    } catch (error) {
+      notAuth(error);
+      return error;
+    }
+  };
+
+  const addProductToUserCart = async (userId, productId) => {
+    addTokenToHeaders();
+    try {
+      const res = await axiosClient.put("/user/addToCart", { userId, productId });
+      dispatch({ type: "CART", payload: res.data.cart });
+      return true;
+    } catch (error) {
+      notAuth(error);
+      return false;
+    }
+  };
+
   const substractProductFromUserCart = async (userId, productId) => {
+    addTokenToHeaders();
     try {
       const res = await axiosClient.put("/user/removeQuantity", { userId, productId });
       dispatch({ type: "CART", payload: res.data.cart });
@@ -178,7 +196,12 @@ const UserState = (props) => {
   };
 
   const deleteProductFromUserCart = async (userId, productId) => {
+    addTokenToHeaders();
     try {
+      const requestData = { userId, productId };
+      console.log('Datos que se van a enviar:', requestData);
+      console.log('Encabezados de la solicitud:', axiosClient.defaults.headers.common);
+
       const res = await axiosClient.put("/user/removeProduct", { userId, productId });
       dispatch({ type: "CART", payload: res.data.cart });
       return true;
