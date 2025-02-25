@@ -78,6 +78,26 @@ const UserState = (props) => {
     });
   };
 
+  const verifyingToken = async () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        axiosClient.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    } else {
+        delete axiosClient.defaults.headers.common['Authorization']
+    }
+    try {
+        const res = await axiosClient.get('/user/verify');
+        console.log('respuesta del verificar usuario', res);
+        dispatch({
+            type: 'OBTENER_USUARIO',
+            payload: res.data.user
+        })
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
   const notAuth = (error) => {
     if (error.response && error.response.status === 401) {
       logout();
@@ -172,6 +192,7 @@ const UserState = (props) => {
     <UserContext.Provider value={{ 
         login, 
         logout,
+        verifyingToken,
         verifyPassword,
         updateUserData, 
         addProductToUserCart, 

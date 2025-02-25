@@ -9,8 +9,8 @@ const UserProfile = () => {
     const [popupMessage, setPopupMessage] = useState("");
     const navigate = useNavigate();
 
-    const userEmail = localStorage.getItem("userEmail");
-    const userUsername = localStorage.getItem("username");
+    const currentEmail = localStorage.getItem("userEmail");
+    const currentUsername = localStorage.getItem("username");
 
     const [activeUser, setActiveUser] = useState({
         username: "",
@@ -73,13 +73,13 @@ const UserProfile = () => {
                                 <span className="font-medium text-sm">Nombre de Usuario:</span>
                             </div>
                             <div className="flex justify-left text-gray-700">
-                                <span>{userUsername || "Felipe"}</span>
+                                <span>{currentUsername}</span>
                             </div>
                             <div className="flex justify-left text-gray-700 mt-4">
                                 <span className="font-medium text-sm">e-mail:</span>
                             </div>
                             <div className="flex justify-left text-gray-700">
-                                <span>{userEmail || "hola@love.cl"}</span>
+                                <span>{currentEmail}</span>
                             </div>
                         </div>
                         <div className="w-30 h-30 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
@@ -99,7 +99,7 @@ const UserProfile = () => {
                                 value={activeUser.username}
                                 onChange={handleChange}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder={userUsername}
+                                placeholder={currentUsername}
                             />
                         </div>
                         <div>
@@ -110,7 +110,7 @@ const UserProfile = () => {
                                 value={activeUser.email}
                                 onChange={handleChange}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder={userEmail}
+                                placeholder={currentEmail}
                             />
                         </div>
                         <div className="flex justify-center mt-10">

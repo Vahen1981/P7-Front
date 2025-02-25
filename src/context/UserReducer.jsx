@@ -30,6 +30,13 @@ const UserReducer = (globalState, action) => {
           cart: action.payload,
         };
 
+      case "OBTENER_USUARIO":
+        return {
+            ...globalState,
+            isAuthenticated: true,
+            user: action.payload
+        }
+
       case 'AUTH':
         return {
           ...globalState,
