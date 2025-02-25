@@ -1,4 +1,4 @@
-import logo from '../img/logo-blue.png'
+import logo from '../img/logo-color.png'
 import bg from '../img/bg.png'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <div
-            className="flex flex-col items-center justify-center w-[100vw]" /* h-[calc(100vh-80px)] */
+            className="flex flex-col items-center justify-center w-[100vw] h-[calc(100vh-80px)] " /* h-[calc(100vh-80px)] */
             style={{
                 backgroundImage: `url(${bg})`,
                 backgroundAttachment: 'fixed',
@@ -17,10 +17,9 @@ const Home = () => {
                 backgroundSize: 'cover',
             }}
         >
-            <div className="container flex flex-col items-center min-h-screen pt-10" style={{ backgroundColor: 'rgba(255, 255, 255, 0.64)'}}> {/* [calc(100vh-80px)] */}
                 <img src={logo} alt="Logo" className="w-100 h-auto"/>
-                <h1 className="text-4xl lg:text-6xl text-blue-600 font-bold ml-3">Küpan Store</h1>
-                <p className="text-blue-600 font-bold text-md lg:text-lg text-center mt-10 max-w-2xl">
+                <h1 className="text-4xl lg:text-6xl text-black font-bold ml-3">Küpan Store</h1>
+                <p className="text-black font-bold text-md lg:text-lg text-center mt-10 max-w-2xl">
                     ¡Bienvenido a Küpan Store! Explora nuestra exclusiva selección de ropa para hombres y mujeres, 
                     joyería elegante y lo último en electrónica. Encuentra estilo, calidad y tecnología en un solo lugar.  
                     Ofrecemos novedades cada semana, envíos rápidos y productos de alta calidad.  
@@ -31,7 +30,6 @@ const Home = () => {
                     onClick={() => navigate('/allproducts')}>
                     Comenzar
                 </button>
-            </div>
         </div>
     )
 }

@@ -39,7 +39,8 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-blue-600 p-2 text-white relative z-60">
+    // <nav className="bg-blue-600 p-2 text-white relative z-60">
+    <nav className="bg-gradient-to-r from-[#0018ff] to-[#0096ff] p-2 text-white relative z-60">
       {showPopup && <Popup message={popupMessage} />}
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex flex-row items-center">
