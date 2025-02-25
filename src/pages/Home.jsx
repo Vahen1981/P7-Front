@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <div
-            className="flex flex-col items-center justify-center w-[100vw] h-[calc(100vh-80px)] " /* h-[calc(100vh-80px)] */
+            className="flex flex-col items-center justify-center w-[100vw] " /* h-[calc(100vh-80px)] */
             style={{
                 backgroundImage: `url(${bg})`,
                 backgroundAttachment: 'fixed',
@@ -17,6 +17,7 @@ const Home = () => {
                 backgroundSize: 'cover',
             }}
         >
+            <div className="container flex flex-col items-center min-h-screen pt-10">
                 <img src={logo} alt="Logo" className="w-100 h-auto"/>
                 <h1 className="text-4xl lg:text-6xl text-black font-bold ml-3">Küpan Store</h1>
                 <p className="text-black font-bold text-md lg:text-lg text-center mt-10 max-w-2xl">
@@ -30,6 +31,7 @@ const Home = () => {
                     onClick={() => navigate('/allproducts')}>
                     Comenzar
                 </button>
+            </div>
         </div>
     )
 }
