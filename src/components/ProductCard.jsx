@@ -9,8 +9,8 @@ const ProductCard = ({ product }) => {
   const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
 
-  const addToCart = async (productId) => {
-    await addProductToUserCart(user.id, productId);
+  const addToCart = async (productId, stripeProductId) => {
+    await addProductToUserCart(user.id, productId, stripeProductId);
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 2000);
   };
@@ -39,10 +39,10 @@ const ProductCard = ({ product }) => {
         onClick={() => navigate(`/productDetail/${product._id}`)}>...más detalles</p>
       </div>
       <div className="mt-auto flex justify-between items-center">
-        <span className="text-xl font-bold">${product.price}</span>
+        <span className="text-xl font-bold">${Intl.NumberFormat('es-CL').format(product.price)}</span> 
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
-          onClick={() => addToCart(product._id)}
+          onClick={() => addToCart(product._id, product.stripe_product_id)}
         >
           Añadir al carrito
         </button>

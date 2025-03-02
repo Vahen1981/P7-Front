@@ -14,6 +14,8 @@ import UserProfile from './pages/UserProfile';
 import ChangePassword from './pages/ChangePassword';
 import Home from './pages/Home';
 import PrivateRoute from './components/auth/PrivateRoute';
+import { SuccessfulPayment } from './pages/SuccesfullPayment';
+import { FailedPayment } from './pages/FailedPayment';
 
 export const Router = createBrowserRouter([
     { 
@@ -31,7 +33,9 @@ export const Router = createBrowserRouter([
             { path: '/cart', element: <ShoppingCart /> },
             { path: '/register', element: <Register />},
             { path: '/login', element: <LoginPage />},
-            { path: '/SuccessfulRegistration', element: <SuccessfulRegistration />},
+            { path: '/successful-registration', element: <SuccessfulRegistration />},
+            { path: '/successful-payment', element: <SuccessfulPayment />},
+            { path: '/failed-payment', element: <FailedPayment />},
 
             //Rutas Privadas
             { path: '/userProfile', element: (<PrivateRoute><UserProfile /></PrivateRoute>) },

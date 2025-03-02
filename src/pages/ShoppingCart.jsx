@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Popup from '../components/Popup';
 
 const ShoppingCartPage = () => {
-  const { verifyingToken, isAuthenticated, logout } = useContext(UserContext);
+  const { verifyingToken, isAuthenticated, logout, sessionURL } = useContext(UserContext);
   const navigate = useNavigate();
   const[showPopup, setShowPopup] = useState(false);
 
@@ -23,6 +23,10 @@ const ShoppingCartPage = () => {
     }
     auth();
   }, []);
+
+  useEffect(() => {
+    if (sessionURL) window.location.href = sessionURL;
+  }, [sessionURL]);
 
   return (
     <>

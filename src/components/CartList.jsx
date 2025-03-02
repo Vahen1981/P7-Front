@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const CartList = () => {
-  const { getUserCart, user, addProductToUserCart, substractProductFromUserCart, deleteProductFromUserCart } = useContext(UserContext);
+  const { getUserCart, user, addProductToUserCart, substractProductFromUserCart, deleteProductFromUserCart, checkoutSession } = useContext(UserContext);
   const { getProductById } = useContext(ProductContext);
   const [productsInCart, setProductsInCart] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,15 +45,16 @@ const CartList = () => {
   const totalPrice = productsInCart.reduce(
     (total, product) => total + (product.price * product.quantity),
     0
-  ).toFixed(2);
+  );
 
 
-  const handleQuantityChange = async (productId, change) => {
+  const handleQuantityChange = async (productId, stripeProductId, change) => {
+    console.log(productsInCart);
     let ok = false;
     if (change === -1) {
       ok = await substractProductFromUserCart(user.id, productId);
     } else if (change === 1) {
-      ok = await addProductToUserCart(user.id, productId);
+      ok = await addProductToUserCart(user.id, productId, stripeProductId);
     }
   
     if (ok) {
@@ -115,7 +116,7 @@ const CartList = () => {
 
                 <div className="flex items-center space-x-2">
                   <button
-                    onClick={() => handleQuantityChange(product.productId, -1)}
+                    onClick={() => handleQuantityChange(product.productId, product.stripe_product_id, -1)}
                     disabled={product.quantity <= 1}
                     className="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400 text-xs"
                   >
@@ -123,7 +124,7 @@ const CartList = () => {
                   </button>
                   <span className="text-sm">{product.quantity}</span>
                   <button
-                    onClick={() => handleQuantityChange(product.productId, 1)}
+                    onClick={() => handleQuantityChange(product.productId, product.stripe_product_id, 1)}
                     className="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400 text-xs"
                   >
                     +
@@ -131,7 +132,7 @@ const CartList = () => {
                 </div>
 
                 <div className="w-30 font-semibold text-sm text-right">
-                  ${product.price * product.quantity}
+                  ${Intl.NumberFormat('es-CL').format(product.price * product.quantity)}
                 </div>
 
                 <button
@@ -151,9 +152,10 @@ const CartList = () => {
         <div className="mt-6">
             <div className="flex justify-between font-semibold text-lg">
                 <span>Total</span>
-                <span>${totalPrice}</span>
+                <span>${Intl.NumberFormat('es-CL').format(totalPrice)}</span>
             </div>
-            <button className="w-32 mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 ml-auto block">
+            <button className="w-32 mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 ml-auto block"
+            onClick={() => checkoutSession(user.id)}>
             Comprar
             </button>
         </div>

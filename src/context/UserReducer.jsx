@@ -57,6 +57,12 @@ const UserReducer = (globalState, action) => {
           },
         };
 
+      case 'CHECKOUT_SESSION':
+        return {
+          ...globalState,
+          sessionURL: action.payload,
+        };
+
       default:
         return globalState;
     }

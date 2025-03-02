@@ -13,6 +13,7 @@ const UserState = (props) => {
     },
     cart: [],
     isAuthenticated: false,
+    sessionURL: null
   };
 
   const [globalState, dispatch] = useReducer(UserReducer, initialState);
@@ -171,10 +172,10 @@ const UserState = (props) => {
     }
   };
 
-  const addProductToUserCart = async (userId, productId) => {
+  const addProductToUserCart = async (userId, productId, stripeProductId) => {
     addTokenToHeaders();
     try {
-      const res = await axiosClient.put("/user/addToCart", { userId, productId });
+      const res = await axiosClient.put("/user/addToCart", { userId, productId, stripeProductId });
       dispatch({ type: "CART", payload: res.data.cart });
       return true;
     } catch (error) {
@@ -211,6 +212,19 @@ const UserState = (props) => {
     }
   };
 
+  const checkoutSession = async (userId) => {
+    addTokenToHeaders();
+    try{
+      const res = await axiosClient.post("/checkout", { userId } );
+      dispatch({
+        type: 'CHECKOUT_SESSION',
+        payload: res.data.session_url
+      })
+    } catch (error){
+      console.error(error);
+    }
+  }
+
   return (
     <UserContext.Provider value={{ 
         login, 
@@ -221,10 +235,12 @@ const UserState = (props) => {
         addProductToUserCart, 
         getUserCart, 
         substractProductFromUserCart, 
-        deleteProductFromUserCart, 
+        deleteProductFromUserCart,
+        checkoutSession, 
         notAuth, 
         user: globalState.user, 
-        isAuthenticated: globalState.isAuthenticated 
+        isAuthenticated: globalState.isAuthenticated,
+        sessionURL: globalState.sessionURL
       }}>
       {props.children}
     </UserContext.Provider>

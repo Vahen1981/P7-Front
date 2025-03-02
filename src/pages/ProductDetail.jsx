@@ -41,8 +41,8 @@ const ProductDetail = () => {
         }
     }
 
-    const addToCart = async (productId) => {
-        await addProductToUserCart(user.id, productId);
+    const addToCart = async (productId, stripeProductId) => {
+        await addProductToUserCart(user.id, productId, stripeProductId);
         setShowPopup(true);
         setTimeout(() => setShowPopup(false), 2000);
     };
@@ -78,14 +78,14 @@ const ProductDetail = () => {
 
             <div className="w-full md:w-1/2">
                 <h1 className="text-3xl font-bold">{productInfo.product.title}</h1>
-                <p className="text-4xl text-gray-700 mt-2">${productInfo.product.price}</p>
+                <p className="text-4xl text-gray-700 mt-2">${Intl.NumberFormat('es-CL').format(productInfo.product.price)}</p> 
                 <div className="flex mt-2">
                     <span className="text-yellow-500 text-4xl">{rating}</span>
                 </div>
                 <p className="mt-4 text-gray-600">{productInfo.product.description}</p>
 
                 <button className="mt-6 bg-blue-600 text-white py-3 px-6 rounded-lg w-full text-lg font-semibold hover:bg-blue-700"
-                    onClick={() => addToCart(productInfo.product._id)}>
+                    onClick={() => addToCart(productInfo.product._id, productInfo.product.stripe_product_id)}>
                     Agregar al carrito
                 </button>
 

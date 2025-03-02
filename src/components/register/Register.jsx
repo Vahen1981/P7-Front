@@ -35,7 +35,7 @@ export const Register = () => {
 
     try {
       await axiosClient.post("/user/register", userData);
-      navigate("/SuccessfulRegistration");
+      navigate("/successful-registration");
     } catch (error) {
       if (error.response) {
         alert(
