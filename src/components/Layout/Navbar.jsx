@@ -6,13 +6,15 @@ import Popup from "../Popup/Popup";
 import logo from '../../assets/img/logo.png';
 
 export default function Navbar() {
-  const { user, isAuthenticated, logout } = useContext(UserContext);
+  const { user, isAuthenticated, logout, cart } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
+  const [numCartItems, setNumCartItems] = useState(null);
+  
 
   const handleClickOutside = useCallback((event) => {
     if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
@@ -37,6 +39,12 @@ export default function Navbar() {
       navigate('/login');
     }, 2000);
   }
+
+  useEffect(() => {
+    if (cart) {
+      setNumCartItems(cart.length);
+    }
+  }, [cart]);
 
   return (
     <nav className="bg-blue-600 p-2 text-white relative z-60">
@@ -73,6 +81,10 @@ export default function Navbar() {
         </ul>
         <div className="flex space-x-4 items-center relative user-menu" ref={userMenuRef}>
           <Link to="/cart" className="flex items-center" onClick={() => console.log("Autenticado: ", isAuthenticated)}><ShoppingCart size={24} /></Link>
+          {numCartItems > 0 && (
+            <p className="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded-full">{numCartItems}</p>
+          )}
+          
           <button
             onClick={(e) => {
               e.stopPropagation();

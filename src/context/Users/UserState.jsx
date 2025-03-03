@@ -199,10 +199,6 @@ const UserState = (props) => {
   const deleteProductFromUserCart = async (userId, productId) => {
     addTokenToHeaders();
     try {
-      const requestData = { userId, productId };
-      console.log('Datos que se van a enviar:', requestData);
-      console.log('Encabezados de la solicitud:', axiosClient.defaults.headers.common);
-
       const res = await axiosClient.put("/user/removeProduct", { userId, productId });
       dispatch({ type: "CART", payload: res.data.cart });
       return true;
