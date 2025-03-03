@@ -6,7 +6,7 @@ import Popup from "../Popup/Popup";
 import logo from '../../assets/img/logo.png';
 
 export default function Navbar() {
-  const { user, isAuthenticated, logout, cart } = useContext(UserContext);
+  const { user, isAuthenticated, logout, cart, getUserCart } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
@@ -32,6 +32,7 @@ export default function Navbar() {
   const logingOut = () => {
     setPopupMessage("Se ha cerrado su sesión");
     setShowPopup(true);
+    setNumCartItems(null);
     setTimeout(() => {
       setShowPopup(false);
       setUserMenuOpen(false);
@@ -41,10 +42,21 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    if (cart) {
-      setNumCartItems(cart.length);
+    if(cart){
+      let totalQuantity = 0;
+      for(let i = 0 ; i < cart.length ; i++){
+        totalQuantity = totalQuantity + (1 * cart[i].quantity);
+      }
+      setNumCartItems(totalQuantity);
     }
   }, [cart]);
+
+  useEffect(() => {
+    const getCart = async () => {
+      await getUserCart(user.id);
+    }
+    getCart();
+  }, [user.id]);
 
   return (
     <nav className="bg-blue-600 p-2 text-white relative z-60">
@@ -79,11 +91,14 @@ export default function Navbar() {
             <Link to="/electronics" className="block" onClick={() => setIsOpen(false)}>Electrónica</Link>
           </li>
         </ul>
-        <div className="flex space-x-4 items-center relative user-menu" ref={userMenuRef}>
-          <Link to="/cart" className="flex items-center" onClick={() => console.log("Autenticado: ", isAuthenticated)}><ShoppingCart size={24} /></Link>
-          {numCartItems > 0 && (
-            <p className="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded-full">{numCartItems}</p>
-          )}
+        <div className="flex space-x-4 items-center user-menu" ref={userMenuRef}>
+          <Link to="/cart" className="flex items-center relative" onClick={() => console.log("Autenticado: ", isAuthenticated)}>
+            <ShoppingCart size={24} />
+            {numCartItems > 0 && (
+              <p className="absolute top-4 left-5 bg-red-500 text-white text-xs px-1 py-0 rounded-full">{numCartItems}</p>
+            )}
+          </Link>
+
           
           <button
             onClick={(e) => {

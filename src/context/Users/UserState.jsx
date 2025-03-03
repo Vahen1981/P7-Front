@@ -79,6 +79,7 @@ const UserState = (props) => {
     localStorage.removeItem("userId");
     localStorage.removeItem("userEmail")
     localStorage.removeItem("username");
+    localStorage.removeItem("cart");
     dispatch({
       type: "LOGOUT",
     });
