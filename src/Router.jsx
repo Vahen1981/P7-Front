@@ -30,7 +30,6 @@ export const Router = createBrowserRouter([
             { path: '/jewelery', element: <Jewelery />},
             { path: '/electronics', element: <Electronics />},
             { path: '/product-detail/:id', element: <ProductDetail />},
-            { path: '/cart', element: <ShoppingCart /> },
             { path: '/register', element: <Register />},
             { path: '/login', element: <LoginPage />},
             { path: '/successful-registration', element: <SuccessfulRegistration />},
@@ -40,6 +39,7 @@ export const Router = createBrowserRouter([
             //Rutas Privadas
             { path: '/userProfile', element: (<PrivateRoute><UserProfile /></PrivateRoute>) },
             { path: '/changePassword', element: (<PrivateRoute><ChangePassword /></PrivateRoute>) },
+            { path: '/cart', element: (<PrivateRoute><ShoppingCart /></PrivateRoute>)},
         ]
     },
 ]);
