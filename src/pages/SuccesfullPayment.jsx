@@ -1,7 +1,26 @@
-import { Link } from "react-router-dom"
+import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 export const SuccessfulPayment = () => {
+    const { deleteProductFromUserCart } = useContext(UserContext);
 
+    useEffect(() => {
+        const savedCart = JSON.parse(localStorage.getItem("cart"));
+        const userId = localStorage.getItem("userId")
+
+        if (savedCart) {
+            const clearCart = async () => {
+
+                for (const product of savedCart) {
+                    await deleteProductFromUserCart(userId, product.productId);
+                }
+
+            };
+            clearCart();
+        }
+      }, []);
+    
     return (
         <>
         <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">

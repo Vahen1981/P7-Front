@@ -164,7 +164,7 @@ const UserState = (props) => {
       const res = await axiosClient.get(`/user/cart/${userId}`);
       if (res.data.cart) {
         dispatch({ type: "CART", payload: res.data.cart });
-      } 
+      }
       return res.data.cart;
     } catch (error) {
       notAuth(error);
@@ -216,10 +216,19 @@ const UserState = (props) => {
     addTokenToHeaders();
     try{
       const res = await axiosClient.post("/checkout", { userId } );
+
+      if (res.data.cart) {
+        localStorage.setItem("cart", JSON.stringify(res.data.cart));
+        dispatch({ type: "CART", payload: res.data.cart });
+      } else {
+        localStorage.setItem("cart", JSON.stringify(globalState.cart));
+      }
+
       dispatch({
         type: 'CHECKOUT_SESSION',
         payload: res.data.session_url
       })
+
     } catch (error){
       console.error(error);
     }
@@ -239,6 +248,7 @@ const UserState = (props) => {
         checkoutSession, 
         notAuth, 
         user: globalState.user, 
+        cart: globalState.cart,
         isAuthenticated: globalState.isAuthenticated,
         sessionURL: globalState.sessionURL
       }}>

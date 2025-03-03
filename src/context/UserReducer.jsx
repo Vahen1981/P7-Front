@@ -22,6 +22,7 @@ const UserReducer = (globalState, action) => {
             token: null,
           },
           isAuthenticated: false,
+          cart: null
         };
 
       case 'CART':
@@ -38,13 +39,15 @@ const UserReducer = (globalState, action) => {
               email: action.payload.email,
               username: action.payload.username,
           },
-            isAuthenticated: true
+            isAuthenticated: true,
+            cart: globalState.cart,
         }
 
       case 'AUTH':
         return {
           ...globalState,
-          isAuthenticated: action.payload
+          isAuthenticated: action.payload,
+          cart: globalState.cart,
         };
 
       case 'UPDATE':

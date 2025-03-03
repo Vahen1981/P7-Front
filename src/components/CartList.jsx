@@ -14,6 +14,12 @@ const CartList = () => {
 
   const getCart = async () => {
     const res = await getUserCart(user.id);
+
+    if (!res || res.length === 0) {
+      setLoading(false);
+      return;
+    }
+    
     if (res) {
         const updatedCart = await Promise.all(
           res.map(async (item) => {

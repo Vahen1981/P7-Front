@@ -32,10 +32,10 @@ const ShoppingCartPage = () => {
     <>
       {showPopup && <Popup message={"No ha iniciado sesión, o su tiempo de sesión a expirado"} />}
       {isAuthenticated ? (
-        <>
+        <div className="min-h-[70vh]">
           <h2 className="text-xl font-semibold mb-4 mt-10 text-center">Carrito de Compras</h2>
           <CartList />
-        </>
+        </div>
       ) : (
         <></>
       )}
