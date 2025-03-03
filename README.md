@@ -83,5 +83,5 @@ La aplicación estará disponible en `http://localhost:5173`.
 - **Detalles del producto**: Haz clic en "mas detalles..." de un producto para ver su descripción detallada, rating y precio.
 - **Regístrate e inicia sesión**: Crea tu usuario para acceder a las opciones que requieren privilegios, como el carrito de compras, gestión de datos de usuario, etc.
 - **Carrito de compras**: Añade productos al carrito y ajusta las cantidades según tus necesidades.
-- **Proceso de pago**: Completa el proceso de pago proporcionando la información requerida y utilizando la integración con Stripe. Para testear puedes usar la tarjet `4242 4242 4242 4242`
+- **Proceso de pago**: Completa el proceso de pago proporcionando la información requerida y utilizando la integración con Stripe. Para testear puedes usar la tarjeta `4242 4242 4242 4242`
 
