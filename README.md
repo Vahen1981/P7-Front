@@ -1,4 +1,4 @@
-# Küpan Store / Proyecto 7 App Fullstack de comercio electrónico - Bootcamp UDD 
+# Küpan Store / Proyecto 7 App Fullstack de comercio electrónico
 
 **Küpan Store** es una aplicación web fullstack para una tienda en línea, diseñada para ofrecer todas las funcionalidades esenciales del comercio electrónico. Los usuarios pueden explorar productos organizados por categorías, agregarlos al carrito de compras y completar sus pagos de manera segura. Además, cuenta con un sistema de autenticación de usuarios gestionado desde el backend.
 
