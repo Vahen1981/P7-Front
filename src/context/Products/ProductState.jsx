@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import ProductContext from "./ProductContext";
 import productReducer from "./ProductReducer";
-import axiosClient from "../config/axios";
+import axiosClient from "../../config/axios";
 
 const ProductState = (props) => {
     const initialState = {

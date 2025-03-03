@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/Users/UserContext";
 
 export const SuccessfulPayment = () => {
     const { deleteProductFromUserCart } = useContext(UserContext);

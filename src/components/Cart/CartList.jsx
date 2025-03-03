@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../../context/UserContext";
-import ProductContext from "../../context/ProductContext";
+import UserContext from "../../context/Users/UserContext";
+import ProductContext from "../../context/Products/ProductContext";
 import { Trash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
@@ -110,12 +110,12 @@ const CartList = () => {
                   src={product.image}
                   alt={product.title}
                   className="w-10 h-10 object-cover rounded cursor-pointer"
-                  onClick={() => {navigate(`/productDetail/${product.productId}`)}}
+                  onClick={() => {navigate(`/product-detail/${product.productId}`)}}
                 />
 
                 <div className="flex-1 ml-4">
                   <h3 className="text-sm font-medium hover:text-blue-500 flex items-center cursor-pointer" 
-                  onClick={() => {navigate(`/productDetail/${product.productId}`)}}>
+                  onClick={() => {navigate(`/product-detail/${product.productId}`)}}>
                     {product.title}
                   </h3>
                 </div>
@@ -162,7 +162,7 @@ const CartList = () => {
             </div>
             <button className="w-32 mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 ml-auto block"
             onClick={() => checkoutSession(user.id)}>
-            Comprar
+            Pagar
             </button>
         </div>
         )}

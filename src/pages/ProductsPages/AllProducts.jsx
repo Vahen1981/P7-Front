@@ -1,17 +1,16 @@
 import { useEffect, useContext, useState } from 'react';
-import ProductContext from '../context/ProductContext';
-import ProductCard from '../components/ProductCard/ProductCard';
-import { Loader2 } from "lucide-react";
+import ProductContext from '../../context/Products/ProductContext';
+import ProductCard from '../../components/ProductCard/ProductCard';
+import { Loader2 } from 'lucide-react';
 
-
-const WomenClothing = () => {
-  const { globalState, getWomenClothing } = useContext(ProductContext);
+const AllProducts = () => {
+  const { globalState, getAllProducts } = useContext(ProductContext);
   const { products } = globalState;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const waitProducts = async () => {
-      await getWomenClothing();
+      await getAllProducts();
       setLoading(false);
     };
     waitProducts();
@@ -27,7 +26,7 @@ const WomenClothing = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <h1 className="text-3xl font-bold mb-6">Ropa de Mujer</h1>
+      <h1 className="text-3xl font-bold mb-6">Todos los productos</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <ProductCard key={product._id} product={product} />
@@ -37,4 +36,4 @@ const WomenClothing = () => {
   );
 };
 
-export default WomenClothing;
+export default AllProducts;

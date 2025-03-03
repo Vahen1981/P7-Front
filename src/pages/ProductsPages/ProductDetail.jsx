@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import ProductContext from "../context/ProductContext";
 import { useParams } from "react-router-dom";
-import UserContext from "../context/UserContext";
-import Popup from "../components/Popup/Popup";
+import ProductContext from "../../context/Products/ProductContext";
+import UserContext from "../../context/Users/UserContext";
+import Popup from "../../components/Popup/Popup";
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -66,7 +66,7 @@ const ProductDetail = () => {
     }
   
     return (
-        <div className="max-w-6xl mx-auto p-6 flex flex-col md:flex-row gap-8">
+        <div className="max-w-6xl min-h-[80vh] mx-auto p-6 flex flex-col md:flex-row gap-8">
             {showPopup && <Popup message={popupMessage} />}
             <div className="w-full md:w-1/2">
                 <img

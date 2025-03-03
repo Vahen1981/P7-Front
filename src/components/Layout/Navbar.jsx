@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect, useContext } from "react";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import UserContext from "../../context/UserContext";
+import UserContext from "../../context/Users/UserContext";
 import Popup from "../Popup/Popup";
 import logo from '../../assets/img/logo.png';
 
@@ -56,7 +56,7 @@ export default function Navbar() {
           }`}
         >
           <li className="p-2 md:p-0">
-            <Link to="/allproducts" className="block" onClick={() => setIsOpen(false)}>Todos los productos</Link>
+            <Link to="/all-products" className="block" onClick={() => setIsOpen(false)}>Todos los productos</Link>
           </li>
           <li className="p-2 md:p-0">
             <Link to="/men" className="block" onClick={() => setIsOpen(false)}>Ropa de Hombre</Link>

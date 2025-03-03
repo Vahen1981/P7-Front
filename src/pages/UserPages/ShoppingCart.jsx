@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from 'react'
-import CartList from '../components/Cart/CartList'
-import UserContext from '../context/UserContext'
 import { useNavigate } from 'react-router-dom';
-import Popup from '../components/Popup/Popup';
+import CartList from '../../components/Cart/CartList'
+import UserContext from '../../context/Users/UserContext'
+import Popup from '../../components/Popup/Popup';
 
 const ShoppingCartPage = () => {
   const { verifyingToken, isAuthenticated, logout, sessionURL } = useContext(UserContext);

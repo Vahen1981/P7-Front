@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../../context/UserContext";
+import UserContext from "../../context/Users/UserContext";
 import Popup from "../Popup/Popup"; 
 import { useNavigate } from "react-router-dom";
 
@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
       <p className="text-gray-600 mb-4">{truncatedDescription}</p>
       <div className="flex justify-end items-end h-full">
         <p className="text-black font-bold mb-4 hover:text-blue-500 cursor-default"
-        onClick={() => navigate(`/productDetail/${product._id}`)}>...más detalles</p>
+        onClick={() => navigate(`/product-detail/${product._id}`)}>...más detalles</p>
       </div>
       <div className="mt-auto flex justify-between items-center">
         <span className="text-xl font-bold">${Intl.NumberFormat('es-CL').format(product.price)}</span> 

@@ -1,21 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Register } from './components/register/Register'
-import { SuccessfulRegistration } from './pages/SuccessfulRegistration'
-import AllProducts from './pages/AllProducts';
+import { Register } from './components/Register/Register'
+import { SuccessfulRegistration } from './pages/UserPages/SuccessfulRegistration'
 import Layout from './components/Layout/Layout';
-import MenClothing from './pages/MenClothing';
-import WomenClothing from './pages/WomenClothing';
-import Jewelery from './pages/Jewelery';
-import Electronics from './pages/Electronics';
-import LoginPage from './components/login/Login';
-import ShoppingCart from './pages/ShoppingCart';
-import ProductDetail from './pages/ProductDetail';
-import UserProfile from './pages/UserProfile';
-import ChangePassword from './pages/ChangePassword';
-import Home from './pages/Home';
-import PrivateRoute from './components/auth/PrivateRoute';
-import { SuccessfulPayment } from './pages/SuccesfullPayment';
-import { FailedPayment } from './pages/FailedPayment';
+import AllProducts from './pages/ProductsPages/AllProducts';
+import MenClothing from './pages/ProductsPages/MenClothing';
+import WomenClothing from './pages/ProductsPages/WomenClothing';
+import Jewelery from './pages/ProductsPages/Jewelery';
+import Electronics from './pages/ProductsPages/Electronics';
+import LoginPage from './components/Login/Login';
+import ShoppingCart from './pages/UserPages/ShoppingCart';
+import ProductDetail from './pages/ProductsPages/ProductDetail';
+import UserProfile from './pages/UserPages/UserProfile';
+import ChangePassword from './pages/UserPages/ChangePassword';
+import Home from './pages/Home/Home';
+import PrivateRoute from './components/Auth/PrivateRoute';
+import { SuccessfulPayment } from './pages/UserPages/SuccesfullPayment';
+import { FailedPayment } from './pages/UserPages/FailedPayment';
 
 export const Router = createBrowserRouter([
     { 
@@ -24,12 +24,12 @@ export const Router = createBrowserRouter([
         children: [
             //Rutas públicas
             { path: '/', element: <Home />},
-            { path: '/allproducts', element: <AllProducts />},
+            { path: '/all-products', element: <AllProducts />},
             { path: '/men', element: <MenClothing />},
             { path: '/women', element: <WomenClothing />},
             { path: '/jewelery', element: <Jewelery />},
             { path: '/electronics', element: <Electronics />},
-            { path: '/productDetail/:id', element: <ProductDetail />},
+            { path: '/product-detail/:id', element: <ProductDetail />},
             { path: '/cart', element: <ShoppingCart /> },
             { path: '/register', element: <Register />},
             { path: '/login', element: <LoginPage />},

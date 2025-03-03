@@ -1,5 +1,5 @@
-import logo from '../assets/img/logo-color.png'
-import bg from '../assets/img/bg.png'
+import logo from '../../assets/img/logo-color.png'
+import bg from '../../assets/img/bg.png'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -28,7 +28,7 @@ const Home = () => {
                 </p>
                 <button 
                     className="mt-10 mb-10 px-8 py-3 bg-blue-600 text-white font-semibold text-lg rounded-full shadow-md hover:bg-blue-700 transition duration-300"
-                    onClick={() => navigate('/allproducts')}>
+                    onClick={() => navigate('/all-products')}>
                     Comenzar
                 </button>
             </div>

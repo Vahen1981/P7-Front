@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserContext from '../../context/UserContext';
+import UserContext from '../../context/Users/UserContext';
 import Popup from '../Popup/Popup';
 
 export default function PrivateRoute({ children }) {
