@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { Register } from './components/register/Register'
 import { SuccessfulRegistration } from './pages/SuccessfulRegistration'
 import AllProducts from './pages/AllProducts';
-import Layout from './components/Layout';
+import Layout from './components/Layout/Layout';
 import MenClothing from './pages/MenClothing';
 import WomenClothing from './pages/WomenClothing';
 import Jewelery from './pages/Jewelery';

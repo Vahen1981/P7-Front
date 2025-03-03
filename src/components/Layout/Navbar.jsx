@@ -1,9 +1,9 @@
 import { useState, useRef, useCallback, useEffect, useContext } from "react";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import UserContext from "../context/UserContext";
-import Popup from "./Popup";
-import logo from '../img/logo.png';
+import UserContext from "../../context/UserContext";
+import Popup from "../Popup";
+import logo from '../../assets/img/logo.png';
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useContext(UserContext);

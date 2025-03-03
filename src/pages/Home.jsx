@@ -1,5 +1,5 @@
-import logo from '../img/logo-color.png'
-import bg from '../img/bg.png'
+import logo from '../assets/img/logo-color.png'
+import bg from '../assets/img/bg.png'
 import { useNavigate } from 'react-router-dom'
 
 
