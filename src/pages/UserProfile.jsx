@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
-import Popup from "../components/Popup";
+import Popup from "../components/Popup/Popup";
 import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {

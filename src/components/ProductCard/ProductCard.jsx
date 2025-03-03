@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../context/UserContext";
-import Popup from "../components/Popup"; 
+import UserContext from "../../context/UserContext";
+import Popup from "../Popup/Popup"; 
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {

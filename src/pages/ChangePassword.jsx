@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import Popup from "../components/Popup";
+import Popup from "../components/Popup/Popup";
 
 const ChangePassword = () => {
     const { user, updateUserData , verifyPassword, loading } = useContext(UserContext);

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import ProductContext from "../context/ProductContext";
 import { useParams } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import Popup from "../components/Popup";
+import Popup from "../components/Popup/Popup";
 
 const ProductDetail = () => {
     const { id } = useParams();

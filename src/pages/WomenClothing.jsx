@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import ProductContext from '../context/ProductContext';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/ProductCard/ProductCard';
 import { Loader2 } from "lucide-react";
 
 

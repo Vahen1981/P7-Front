@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../context/UserContext";
-import ProductContext from "../context/ProductContext";
+import UserContext from "../../context/UserContext";
+import ProductContext from "../../context/ProductContext";
 import { Trash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";

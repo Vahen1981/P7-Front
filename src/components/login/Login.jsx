@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import UserContext from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import Popup from "../Popup";
+import Popup from "../Popup/Popup";
 
 const LoginPage = () => {
   const { login, error, loading } = useContext(UserContext);
