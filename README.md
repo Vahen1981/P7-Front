@@ -20,10 +20,10 @@ Este repositorio contiene únicamente el frontend de la aplicación. Para accede
 - **React Router DOM v6**: Manejo de rutas y navegación dentro de la aplicación.
 - **Tailwind CSS**: Estilización de componentes y diseño responsivo.
 - **Hooks de React**, algunos de los principales:
- - **useState:** Manejo del estado en los componentes.
- - **useEffect:** Ejecución de efectos secundarios en los componentes.
- - **useContext:** Gestión de estados globales mediante el contexto.
- - **useReducer:** Manejo avanzado del estado con lógica más estructurada.
+    - **useState:** Manejo del estado en los componentes.
+    - **useEffect:** Ejecución de efectos secundarios en los componentes.
+    - **useContext:** Gestión de estados globales mediante el contexto.
+    - **useReducer:** Manejo avanzado del estado con lógica más estructurada.
 
 ### Backend
 
