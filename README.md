@@ -2,6 +2,8 @@
 
 **Küpan Store** es una aplicación web fullstack para una tienda en línea, diseñada para ofrecer todas las funcionalidades esenciales del comercio electrónico. Los usuarios pueden explorar productos organizados por categorías, agregarlos al carrito de compras y completar sus pagos de manera segura. Además, cuenta con un sistema de autenticación de usuarios gestionado desde el backend.
 
+Para ver el sitio desplegado en la web, visita el siguiente enlace: link
+
 Este repositorio contiene únicamente el frontend de la aplicación. Para acceder al backend, visita: https://www.backend.cl.
 
 ## Características
@@ -39,84 +41,47 @@ Este repositorio contiene únicamente el frontend de la aplicación. Para accede
 
 ## Instalación y configuración
 
-Sigue estos pasos para ejecutar el proyecto en tu entorno local:
+Para ejecutar el proyecto en tu entorno local descarga y sigue las instrucciones listadas abajo.
+
+### Backend
+Descarga y sigue las instrucciones del backend aquí: link
+
+### Frontend
 
 1. **Clona el repositorio**:
 
    ```bash
-   git clone https://github.com/tu_usuario/kupan-store.git
-   cd kupan-store
+   git clone https://github.com/Vahen1981/P7-Front.git
+   cd P7-Front
    ```
 
-2. **Instala las dependencias del backend**:
+2. **Instala las dependencias**:
 
    ```bash
-   cd backend
    npm install
    ```
 
 3. **Configura las variables de entorno**:
 
-   Crea un archivo `.env` en la carpeta `backend` con las siguientes variables:
+   Crea un archivo `.env` en la carpeta raíz con las siguientes variables:
 
    ```env
-   PORT=5000
-   MONGODB_URI=tu_mongodb_uri
-   STRIPE_SECRET_KEY=tu_stripe_secret_key
+   VITE_BACKEND_URL=http://localhost:8000/api
    ```
 
-4. **Inicia el servidor backend**:
+4. **Inicia la aplicación frontend**:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
-5. **Instala las dependencias del frontend**:
-
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-
-6. **Configura las variables de entorno del frontend**:
-
-   Crea un archivo `.env` en la carpeta `frontend` con las siguientes variables:
-
-   ```env
-   REACT_APP_API_URL=http://localhost:5000/api
-   REACT_APP_STRIPE_PUBLIC_KEY=tu_stripe_public_key
-   ```
-
-7. **Inicia la aplicación frontend**:
-
-   ```bash
-   npm start
-   ```
-
-La aplicación estará disponible en `http://localhost:3000`.
+La aplicación estará disponible en `http://localhost:5173`.
 
 ## Uso
 
 - **Navegación**: Explora las diferentes categorías de productos desde la página principal.
-- **Detalles del producto**: Haz clic en un producto para ver su descripción detallada, precio y opciones disponibles.
+- **Detalles del producto**: Haz clic en "mas detalles..." de un producto para ver su descripción detallada, rating y precio.
+- **Regístrate e inicia sesión**: Crea tu usuario para acceder a las opciones que requieren privilegios, como el carrito de compras, gestión de datos de usuario, etc.
 - **Carrito de compras**: Añade productos al carrito y ajusta las cantidades según tus necesidades.
 - **Proceso de pago**: Completa el proceso de pago proporcionando la información requerida y utilizando la integración con Stripe.
-- **Cuenta de usuario**: Regístrate o inicia sesión para acceder a tu historial de pedidos y gestionar tu información personal.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
-
-1. **Fork** el repositorio.
-2. Crea una nueva rama para tu funcionalidad o corrección de errores: `git checkout -b feature/nueva-funcionalidad`.
-3. Realiza tus cambios y haz commits descriptivos.
-4. Envía una **pull request** detallando tus cambios y la razón de ellos.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-
----
-
-¡Gracias por visitar Küpan Store! Si tienes alguna pregunta o sugerencia, no dudes en contactarnos.
 
