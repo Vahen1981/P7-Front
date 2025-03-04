@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Register } from './components/Register/Register.jsx';
+import { Register } from './components/register/Register.jsx';
 import { SuccessfulRegistration } from './pages/UserPages/SuccessfulRegistration.jsx';
 import Layout from './components/Layout/Layout.jsx';
 import AllProducts from './pages/ProductsPages/AllProducts.jsx';
