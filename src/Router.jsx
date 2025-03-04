@@ -7,7 +7,7 @@ import MenClothing from './pages/ProductsPages/MenClothing.jsx';
 import WomenClothing from './pages/ProductsPages/WomenClothing.jsx';
 import Jewelery from './pages/ProductsPages/Jewelery.jsx';
 import Electronics from './pages/ProductsPages/Electronics.jsx';
-import LoginPage from './components/Login/Login.jsx';
+import LoginPage from './components/login/Login.jsx';
 import ShoppingCart from './pages/UserPages/ShoppingCart.jsx';
 import ProductDetail from './pages/ProductsPages/ProductDetail.jsx';
 import UserProfile from './pages/UserPages/UserProfile.jsx';
