@@ -1,21 +1,21 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { Register } from './components/Register/Register.jsx'
-import { SuccessfulRegistration } from './pages/UserPages/SuccessfulRegistration'
-import Layout from './components/Layout/Layout';
-import AllProducts from './pages/ProductsPages/AllProducts';
-import MenClothing from './pages/ProductsPages/MenClothing';
-import WomenClothing from './pages/ProductsPages/WomenClothing';
-import Jewelery from './pages/ProductsPages/Jewelery';
-import Electronics from './pages/ProductsPages/Electronics';
-import LoginPage from './components/Login/Login';
-import ShoppingCart from './pages/UserPages/ShoppingCart';
-import ProductDetail from './pages/ProductsPages/ProductDetail';
-import UserProfile from './pages/UserPages/UserProfile';
-import ChangePassword from './pages/UserPages/ChangePassword';
-import Home from './pages/Home/Home';
-import PrivateRoute from './components/Auth/PrivateRoute';
-import { SuccessfulPayment } from './pages/UserPages/SuccesfullPayment';
-import { FailedPayment } from './pages/UserPages/FailedPayment';
+import { createBrowserRouter } from 'react-router-dom';
+import { Register } from './components/Register/Register.jsx';
+import { SuccessfulRegistration } from './pages/UserPages/SuccessfulRegistration.jsx';
+import Layout from './components/Layout/Layout.jsx';
+import AllProducts from './pages/ProductsPages/AllProducts.jsx';
+import MenClothing from './pages/ProductsPages/MenClothing.jsx';
+import WomenClothing from './pages/ProductsPages/WomenClothing.jsx';
+import Jewelery from './pages/ProductsPages/Jewelery.jsx';
+import Electronics from './pages/ProductsPages/Electronics.jsx';
+import LoginPage from './components/Login/Login.jsx';
+import ShoppingCart from './pages/UserPages/ShoppingCart.jsx';
+import ProductDetail from './pages/ProductsPages/ProductDetail.jsx';
+import UserProfile from './pages/UserPages/UserProfile.jsx';
+import ChangePassword from './pages/UserPages/ChangePassword.jsx';
+import Home from './pages/Home/Home.jsx';
+import PrivateRoute from './components/Auth/PrivateRoute.jsx';
+import { SuccessfulPayment } from './pages/UserPages/SuccesfullPayment.jsx';
+import { FailedPayment } from './pages/UserPages/FailedPayment.jsx';
 
 export const Router = createBrowserRouter([
     { 
