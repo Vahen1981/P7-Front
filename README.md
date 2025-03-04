@@ -2,9 +2,9 @@
 
 **Küpan Store** es una aplicación web fullstack para una tienda en línea, diseñada para ofrecer todas las funcionalidades esenciales del comercio electrónico. Los usuarios pueden explorar productos organizados por categorías, agregarlos al carrito de compras y completar sus pagos de manera segura. Además, cuenta con un sistema de autenticación de usuarios gestionado desde el backend.
 
-Para ver el sitio desplegado en la web, visita el siguiente enlace: link
+Para ver el sitio desplegado en la web, visita el siguiente enlace: https://p7-front-production.up.railway.app
 
-Este repositorio contiene únicamente el frontend de la aplicación. Para acceder al backend, visita: https://www.backend.cl.
+Este repositorio contiene únicamente el frontend de la aplicación. Para acceder al backend, visita: https://github.com/Vahen1981/P7-Back 
 
 ## Características
 
