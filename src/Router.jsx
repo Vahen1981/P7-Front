@@ -13,7 +13,7 @@ import ProductDetail from './pages/ProductsPages/ProductDetail.jsx';
 import UserProfile from './pages/UserPages/UserProfile.jsx';
 import ChangePassword from './pages/UserPages/ChangePassword.jsx';
 import Home from './pages/Home/Home.jsx';
-import PrivateRoute from './components/Auth/PrivateRoute.jsx';
+import PrivateRoute from './components/auth/PrivateRoute.jsx';
 import { SuccessfulPayment } from './pages/UserPages/SuccesfullPayment.jsx';
 import { FailedPayment } from './pages/UserPages/FailedPayment.jsx';
 
