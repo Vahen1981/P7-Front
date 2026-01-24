@@ -4,7 +4,7 @@
 
 Para ver el sitio desplegado en la web, visita el siguiente enlace: https://p7-front-production.up.railway.app
 
-Este repositorio contiene únicamente el frontend de la aplicación. Para acceder al backend, visita: https://github.com/Vahen1981/P7-Back 
+Este repositorio contiene únicamente el frontend de la aplicación. Para acceder al backend, visita: https://github.com/Vahen1981/Online-Store-Back 
 
 ## Características
 
